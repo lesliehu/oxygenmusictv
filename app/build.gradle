@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace 'hu.oxygenmusic.tv'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "hu.oxygenmusic.tv"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        release {
+            storeFile file("my-release-key.keystore")
+            storePassword "Gemini55"
+            keyAlias "my-key-alias"
+            keyPassword "Gemini55"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.19.1'
+    implementation 'androidx.leanback:leanback:1.1.0-alpha05'
+}
